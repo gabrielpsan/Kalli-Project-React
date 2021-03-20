@@ -1,0 +1,261 @@
+import React, { useEffect } from 'react'
+import { Container, TextSubSlider, BoxRedes, Redes, TextSubRedes, BoxProdutosPequenos,ContainerProdutosPequenos,
+    ImageBox, TextPartBox, ContainerProdutosGrandes, BoxProdutosGrandes, ImageBoxGrandes,
+    ImageBoxGrandesDark, TextPartBoxGrandes, ContainerVoceJaConhece, TitleRedes, TitlePerguntas, TitleFeedback,
+    ContainerFeedback, Feedback, BordaFeedback, ContainerVantagens, Vantagem, ImgVantagem, TextVantagem,
+    ContainerNovidades, TopNovidades, BottomNovidades, RedesSociaisNovidades,EsquerdaNovidade, MeioNovidade, DireitaNovidade } from '../../styles/LandingPage'
+import "aos/dist/aos.css";
+
+import instagram from '../../utils/img/instagram.png'
+import facebook from '../../utils/img/facebook.png'
+import produto1 from '../../utils/img/produto1.jpg'
+import produto2 from '../../utils/img/produto2.jpg'
+import produto3 from '../../utils/img/produto3.jpg'
+import truck from '../../utils/img/truck.jpeg'
+import cartao from '../../utils/img/cartao.jpeg'
+import seguranca from '../../utils/img/seguranca.jpeg'
+import imgNovo from '../../utils/img/imgNovo.PNG'
+import Slider from '../../components/Slider/Index'
+import Perguntas from '../../components/Perguntas'
+import Aos from 'aos';
+import HeaderComponent from '../../components/Header';
+import { useHistory } from "react-router-dom";
+
+const LandingPage = () => {
+
+    // function detectaApareceu() {
+    //     document.querySelectorAll('img').forEach((img, index) => {
+    //         if(img.getBoundingClientRect().top < window.innerHeight){
+    //             // console.log('Imagem apareceu', index);
+    //             img.src = img.getAttribute('data-src');
+    //         };
+    //     })
+    // }
+
+    // window.addEventListener('scroll', detectaApareceu);
+    let history = useHistory();
+
+    function handleClick(){
+        history.push('/produto');
+    }
+
+    useEffect(() => {
+        Aos.init({duration: 1000});
+  
+    }, [])
+    return (
+        <Container>
+            <HeaderComponent/>
+            <Slider/>
+            <TextSubSlider>
+                <h1>A sua box de assinatura de produtos de beleza</h1>
+                <img src={imgNovo} alt="kalli" />
+            </TextSubSlider>
+        
+            <ContainerProdutosPequenos>
+                <BoxProdutosPequenos>
+                    <ImageBox>
+                        <img src={produto1} alt="produto1" />
+                    </ImageBox>
+                    <TextPartBox>
+                        <h1>Box kalli basic</h1>
+                        <p>Box de produtos de beleza sortidos</p>
+                        <h2>R$ 85,90</h2>
+                        <button  onClick={() => handleClick()}>Quero</button>
+                    </TextPartBox>
+                </BoxProdutosPequenos>
+                <BoxProdutosPequenos>
+                    <ImageBox>
+                        <img src={produto2} alt="produto2" />
+                    </ImageBox>
+                    <TextPartBox>
+                        <h1>Box kalli basic</h1>
+                        <p>Box de produtos de beleza sortidos</p>
+                        <h2>R$ 85,90</h2>
+                        <button>Quero</button>
+                    </TextPartBox>
+                </BoxProdutosPequenos>
+                <BoxProdutosPequenos>
+                    <ImageBox>
+                        <img src={produto3} alt="produto3" />
+                    </ImageBox>
+                    <TextPartBox>
+                        <h1>Box kalli basic</h1>
+                        <p>Box de produtos de beleza sortidos</p>
+                        <h2>R$ 85,90</h2>
+                        <button>Quero</button>
+                    </TextPartBox>
+                </BoxProdutosPequenos>
+            </ContainerProdutosPequenos>
+
+            <ContainerProdutosGrandes>
+                <BoxProdutosGrandes>
+                    <ImageBoxGrandes>
+                        <img src={produto2} alt="produto2" />
+                    </ImageBoxGrandes>
+                    <TextPartBoxGrandes>
+                        <h1>Box kalli hair basic</h1>
+                        <p>Box de produtos de cabelos sortidos</p>
+                        <h2>R$ 85,90</h2>
+                        <button>Quero</button>
+                    </TextPartBoxGrandes>
+                </BoxProdutosGrandes>
+                <BoxProdutosGrandes>
+                    <ImageBoxGrandesDark>
+                        <img src={produto1} alt="produto1" />
+                    </ImageBoxGrandesDark>
+                    <TextPartBoxGrandes>
+                        <h1>Box kalli hair basic</h1>
+                        <p>Box de produtos de cabelos sortidos</p>
+                        <h2>R$ 85,90</h2>
+                        <button>Quero</button>
+                    </TextPartBoxGrandes>
+                </BoxProdutosGrandes>
+            </ContainerProdutosGrandes>
+
+            <ContainerVoceJaConhece>
+                <h1 data-aos="fade-up" data-aos-offset="200">Você já conhece a box kalli?</h1>
+                <button data-aos="fade-down" data-aos-offset="200">Quero conhecer</button>
+            </ContainerVoceJaConhece>
+
+            <TitleRedes>
+                <h1>Se liga nas nossas redes</h1>
+            </TitleRedes>
+
+            <BoxRedes>
+                <Redes></Redes>
+                <Redes></Redes>
+                <Redes></Redes>
+            </BoxRedes>
+
+            <TextSubRedes>
+                <h1>
+                    "Kalli é uma marca brasiliense que nasceu pra entregar<br/>
+                    produtos de qualidade dentro de uma box personalizada<br/>
+                    todo mês pra você"
+                </h1>
+            </TextSubRedes>
+
+            <TitlePerguntas>
+                <h1>Perguntas frequentes</h1>
+                <h2>Qualquer outra dúvida entre em contato pelo nosso Instagram ou pelo<br/>
+                    email kallicomvc@gmail.com
+                </h2>
+            </TitlePerguntas>
+
+            <Perguntas/>
+
+            <TitleFeedback>
+                <h1>
+                    Feedback de quem já estar com a sua
+                    box kalli
+                </h1>
+            </TitleFeedback>
+
+            <ContainerFeedback>
+                <Feedback>
+                    <h1>
+                        "adorei a box que chegou aqui em casa,<br/>
+                        não conhecia a maioria dos produtos,<br/>
+                        porém amei"<br/>
+                        @carolsales
+                    </h1>
+                    <BordaFeedback />
+                </Feedback>
+                <Feedback>
+                    <h1>
+                        "adorei a box que chegou aqui em casa,<br/>
+                        não conhecia a maioria dos produtos,<br/>
+                        porém amei"<br/>
+                        @carolsales
+                    </h1>
+                    <BordaFeedback />
+                </Feedback>
+                <Feedback>
+                    <h1>
+                        "adorei a box que chegou aqui em casa,<br/>
+                        não conhecia a maioria dos produtos,<br/>
+                        porém amei"<br/>
+                        @carolsales
+                    </h1>
+                    <BordaFeedback />
+                </Feedback>
+                <Feedback>
+                    <h1>
+                        "adorei a box que chegou aqui em casa,<br/>
+                        não conhecia a maioria dos produtos,<br/>
+                        porém amei"<br/>
+                        @carolsales
+                    </h1>
+                    <BordaFeedback />
+                </Feedback>
+            </ContainerFeedback>
+
+            <ContainerVantagens>
+                <Vantagem>
+                    <ImgVantagem>
+                        <img src={truck} alt="caminhao" />
+                    </ImgVantagem>
+                    <TextVantagem>
+                        <h1>Enviamos sua box</h1>
+                        <p>Para todo o Brasil</p>
+                    </TextVantagem>
+                </Vantagem>
+                <Vantagem>
+                    <ImgVantagem>
+                        <img className="cartao" alt="cartao" src={cartao} />
+                    </ImgVantagem>
+                    <TextVantagem>
+                        <h1>Pague fácilmente</h1>
+                        <p>Várias maeniras de pagamento</p>
+                    </TextVantagem>
+                </Vantagem>
+                <Vantagem>
+                    <ImgVantagem>
+                        <img className="seguranca" alt="seguranca" src={seguranca} />
+                    </ImgVantagem>
+                    <TextVantagem>
+                        <h1>Compre com segurança</h1>
+                        <p>Seus dados protegidos.</p>
+                    </TextVantagem>
+                </Vantagem>
+            </ContainerVantagens>
+
+
+            <ContainerNovidades>
+                <TopNovidades>
+                    <EsquerdaNovidade>
+                        <h1>
+                            Receba nossas novidades<br/>
+                            e dicas de beleza
+                        </h1>
+                    </EsquerdaNovidade>
+                    <MeioNovidade>
+                        <input placeholder="Seu e-mail"></input>
+                    </MeioNovidade>
+                    <DireitaNovidade>
+                        <button>enviar</button>
+                    </DireitaNovidade>
+                </TopNovidades>
+                <BottomNovidades>
+                    <h1>
+                        Fale com a gente<br/>
+                        kallicomvc@gmail.com
+                    </h1>
+                    <RedesSociaisNovidades>
+                        <h1>
+                            Nos acompanhe nas redes<br/>
+                        </h1>
+                        <a href="https://instagram.com" target="_blank" rel="noreferrer"><img src={instagram} alt="instagram"/></a>
+                        <a href="https://facebook.com" target="_blank" rel="noreferrer"><img src={facebook} alt="facebook"/></a>
+                    </RedesSociaisNovidades>
+                    <h1>
+                        Política de vendas<br/>
+                    </h1>
+                </BottomNovidades>
+            </ContainerNovidades>
+
+        </Container>
+    )
+  };
+  export default LandingPage;
