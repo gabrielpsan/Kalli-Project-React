@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
-import { Container, TextSubSlider, BoxRedes, Redes, TextSubRedes, BoxProdutosPequenos,ContainerProdutosPequenos,
+import React, { useEffect, useState } from 'react'
+import {
+    Container, TextSubSlider, BoxRedes, Redes, TextSubRedes, BoxProdutosPequenos, ContainerProdutosPequenos,
     ImageBox, TextPartBox, ContainerProdutosGrandes, BoxProdutosGrandes, ImageBoxGrandes,
     ImageBoxGrandesDark, TextPartBoxGrandes, ContainerVoceJaConhece, TitleRedes, TitlePerguntas, TitleFeedback,
     ContainerFeedback, Feedback, BordaFeedback, ContainerVantagens, Vantagem, ImgVantagem, TextVantagem,
-    ContainerNovidades, TopNovidades, BottomNovidades, RedesSociaisNovidades,EsquerdaNovidade, MeioNovidade, DireitaNovidade } from '../../styles/LandingPage'
+    ContainerNovidades, TopNovidades, BottomNovidades, RedesSociaisNovidades, EsquerdaNovidade, MeioNovidade, DireitaNovidade
+} from '../../styles/LandingPage'
 import "aos/dist/aos.css";
 
 import instagram from '../../utils/img/instagram.png'
@@ -20,7 +22,8 @@ import Perguntas from '../../components/Perguntas'
 import Aos from 'aos';
 import HeaderComponent from '../../components/Header';
 import { useHistory } from "react-router-dom";
-
+import api from '../../services/api'
+import { getToken } from '../../services/auth' 
 const LandingPage = () => {
 
     // function detectaApareceu() {
@@ -33,25 +36,53 @@ const LandingPage = () => {
     // }
 
     // window.addEventListener('scroll', detectaApareceu);
+
+    const [usuarios, setUsuarios] = useState([]);
+
+    async function consultaDados() {
+        const token = getToken();
+        const header_config = {'x-access-token': `${token}`};
+
+        console.log(header_config);
+
+        await api.get(`/usuario`, {headers: header_config}).then(res => {
+            setUsuarios(res.data);
+            console.log("data: ", res.data);
+        });
+    }
+
+    async function consultaCep() {
+
+        let cep = '73252200'
+
+        await api.get(`/frete/${cep}`).then(res => {
+            console.log("cep consultado: ", res.data);
+        });
+    }
+
+    console.log("dados", usuarios);
+
     let history = useHistory();
 
-    function handleClick(){
+    function handleClick() {
         history.push('/produto');
     }
 
     useEffect(() => {
-        Aos.init({duration: 1000});
-  
+        consultaDados();
+        consultaCep();
+        Aos.init({ duration: 1000 });
     }, [])
+
     return (
         <Container>
-            <HeaderComponent/>
-            <Slider/>
+            <HeaderComponent />
+            <Slider />
             <TextSubSlider>
                 <h1>A sua box de assinatura de produtos de beleza</h1>
                 <img src={imgNovo} alt="kalli" />
             </TextSubSlider>
-        
+
             <ContainerProdutosPequenos>
                 <BoxProdutosPequenos>
                     <ImageBox>
@@ -61,7 +92,7 @@ const LandingPage = () => {
                         <h1>Box kalli basic</h1>
                         <p>Box de produtos de beleza sortidos</p>
                         <h2>R$ 85,90</h2>
-                        <button  onClick={() => handleClick()}>Quero</button>
+                        <button onClick={() => handleClick()}>Quero</button>
                     </TextPartBox>
                 </BoxProdutosPequenos>
                 <BoxProdutosPequenos>
@@ -130,20 +161,20 @@ const LandingPage = () => {
 
             <TextSubRedes>
                 <h1>
-                    "Kalli é uma marca brasiliense que nasceu pra entregar<br/>
-                    produtos de qualidade dentro de uma box personalizada<br/>
+                    "Kalli é uma marca brasiliense que nasceu pra entregar<br />
+                    produtos de qualidade dentro de uma box personalizada<br />
                     todo mês pra você"
                 </h1>
             </TextSubRedes>
 
             <TitlePerguntas>
                 <h1>Perguntas frequentes</h1>
-                <h2>Qualquer outra dúvida entre em contato pelo nosso Instagram ou pelo<br/>
+                <h2>Qualquer outra dúvida entre em contato pelo nosso Instagram ou pelo<br />
                     email kallicomvc@gmail.com
                 </h2>
             </TitlePerguntas>
 
-            <Perguntas/>
+            <Perguntas />
 
             <TitleFeedback>
                 <h1>
@@ -155,36 +186,36 @@ const LandingPage = () => {
             <ContainerFeedback>
                 <Feedback>
                     <h1>
-                        "adorei a box que chegou aqui em casa,<br/>
-                        não conhecia a maioria dos produtos,<br/>
-                        porém amei"<br/>
+                        "adorei a box que chegou aqui em casa,<br />
+                        não conhecia a maioria dos produtos,<br />
+                        porém amei"<br />
                         @carolsales
                     </h1>
                     <BordaFeedback />
                 </Feedback>
                 <Feedback>
                     <h1>
-                        "adorei a box que chegou aqui em casa,<br/>
-                        não conhecia a maioria dos produtos,<br/>
-                        porém amei"<br/>
+                        "adorei a box que chegou aqui em casa,<br />
+                        não conhecia a maioria dos produtos,<br />
+                        porém amei"<br />
                         @carolsales
                     </h1>
                     <BordaFeedback />
                 </Feedback>
                 <Feedback>
                     <h1>
-                        "adorei a box que chegou aqui em casa,<br/>
-                        não conhecia a maioria dos produtos,<br/>
-                        porém amei"<br/>
+                        "adorei a box que chegou aqui em casa,<br />
+                        não conhecia a maioria dos produtos,<br />
+                        porém amei"<br />
                         @carolsales
                     </h1>
                     <BordaFeedback />
                 </Feedback>
                 <Feedback>
                     <h1>
-                        "adorei a box que chegou aqui em casa,<br/>
-                        não conhecia a maioria dos produtos,<br/>
-                        porém amei"<br/>
+                        "adorei a box que chegou aqui em casa,<br />
+                        não conhecia a maioria dos produtos,<br />
+                        porém amei"<br />
                         @carolsales
                     </h1>
                     <BordaFeedback />
@@ -226,7 +257,7 @@ const LandingPage = () => {
                 <TopNovidades>
                     <EsquerdaNovidade>
                         <h1>
-                            Receba nossas novidades<br/>
+                            Receba nossas novidades<br />
                             e dicas de beleza
                         </h1>
                     </EsquerdaNovidade>
@@ -239,23 +270,23 @@ const LandingPage = () => {
                 </TopNovidades>
                 <BottomNovidades>
                     <h1>
-                        Fale com a gente<br/>
+                        Fale com a gente<br />
                         kallicomvc@gmail.com
                     </h1>
                     <RedesSociaisNovidades>
                         <h1>
-                            Nos acompanhe nas redes<br/>
+                            Nos acompanhe nas redes<br />
                         </h1>
-                        <a href="https://instagram.com" target="_blank" rel="noreferrer"><img src={instagram} alt="instagram"/></a>
-                        <a href="https://facebook.com" target="_blank" rel="noreferrer"><img src={facebook} alt="facebook"/></a>
+                        <a href="https://instagram.com" target="_blank" rel="noreferrer"><img src={instagram} alt="instagram" /></a>
+                        <a href="https://facebook.com" target="_blank" rel="noreferrer"><img src={facebook} alt="facebook" /></a>
                     </RedesSociaisNovidades>
                     <h1>
-                        Política de vendas<br/>
+                        Política de vendas<br />
                     </h1>
                 </BottomNovidades>
             </ContainerNovidades>
 
         </Container>
     )
-  };
-  export default LandingPage;
+};
+export default LandingPage;

@@ -48,6 +48,9 @@ export const TextPergunta = styled.div`
     justify-content: space-between;
     width: 100%;
     border-radius: 20px;
+    :hover {
+        cursor: pointer;
+    }
 
     h1 {
         font-size: 28px;
@@ -81,6 +84,7 @@ export const BarraPergunta = styled.div`
     background: #302F2B;
     border-radius: 20px;
     margin-top: 20px;
+
 `
 
 export const HidenResposta = styled.div`
