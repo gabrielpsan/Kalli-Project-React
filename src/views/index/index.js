@@ -23,7 +23,8 @@ import Aos from 'aos';
 import HeaderComponent from '../../components/Header';
 import { useHistory } from "react-router-dom";
 import api from '../../services/api'
-import { getToken } from '../../services/auth' 
+import { getToken } from '../../services/auth'
+
 const LandingPage = () => {
 
     // function detectaApareceu() {
@@ -38,39 +39,62 @@ const LandingPage = () => {
     // window.addEventListener('scroll', detectaApareceu);
 
     const [usuarios, setUsuarios] = useState([]);
+    const [produtos, setProdutos] = useState([]);
+    const [usuarioLogado, setUsuarioLogado] = useState();
 
     async function consultaDados() {
         const token = getToken();
-        const header_config = {'x-access-token': `${token}`};
+        const header_config = { 'x-access-token': `${token}` };
 
-        console.log(header_config);
+        // console.log(header_config);
 
-        await api.get(`/usuario`, {headers: header_config}).then(res => {
+        await api.get(`/usuario`, { headers: header_config }).then(res => {
             setUsuarios(res.data);
-            console.log("data: ", res.data);
+            // console.log("data: ", res.data);
         });
     }
 
-    async function consultaCep() {
+    async function consultaProdutos() {
+        const token = getToken();
+        const header_config = { 'x-access-token': `${token}` };
 
-        let cep = '73252200'
+        // console.log(header_config);
 
-        await api.get(`/frete/${cep}`).then(res => {
-            console.log("cep consultado: ", res.data);
+        await api.get(`/produtos`, { headers: header_config }).then(res => {
+            setProdutos(res.data);
+            // console.log("data: ", res.data);
         });
     }
 
-    console.log("dados", usuarios);
+
+    // console.log("dados", usuarios);
 
     let history = useHistory();
 
-    function handleClick() {
-        history.push('/produto');
+    function handleClick(id) {
+        history.push(`/produto/${id}`);
     }
 
+    
+    // async function consultaUsuarioLogado() {
+    //     const token = getToken();
+    //     const header_config = { 'x-access-token': `${token}` };
+
+    //     console.log("aquii: ", header_config);
+
+
+    //     await api.post(`/refresh`, {}, { headers: header_config }).then(res => {
+    //         setUsuarioLogado(res.data)
+    //         console.log("dataLogado: ", res.data);
+    //     });
+    // }
+
     useEffect(() => {
+
+
+        // consultaUsuarioLogado();
         consultaDados();
-        consultaCep();
+        consultaProdutos();
         Aos.init({ duration: 1000 });
     }, [])
 
@@ -84,39 +108,20 @@ const LandingPage = () => {
             </TextSubSlider>
 
             <ContainerProdutosPequenos>
-                <BoxProdutosPequenos>
-                    <ImageBox>
-                        <img src={produto1} alt="produto1" />
-                    </ImageBox>
-                    <TextPartBox>
-                        <h1>Box kalli basic</h1>
-                        <p>Box de produtos de beleza sortidos</p>
-                        <h2>R$ 85,90</h2>
-                        <button onClick={() => handleClick()}>Quero</button>
-                    </TextPartBox>
-                </BoxProdutosPequenos>
-                <BoxProdutosPequenos>
-                    <ImageBox>
-                        <img src={produto2} alt="produto2" />
-                    </ImageBox>
-                    <TextPartBox>
-                        <h1>Box kalli basic</h1>
-                        <p>Box de produtos de beleza sortidos</p>
-                        <h2>R$ 85,90</h2>
-                        <button>Quero</button>
-                    </TextPartBox>
-                </BoxProdutosPequenos>
-                <BoxProdutosPequenos>
-                    <ImageBox>
-                        <img src={produto3} alt="produto3" />
-                    </ImageBox>
-                    <TextPartBox>
-                        <h1>Box kalli basic</h1>
-                        <p>Box de produtos de beleza sortidos</p>
-                        <h2>R$ 85,90</h2>
-                        <button>Quero</button>
-                    </TextPartBox>
-                </BoxProdutosPequenos>
+
+                {produtos.map((produto) => (
+                    <BoxProdutosPequenos>
+                        <ImageBox>
+                            <img src={produto1} alt="produto1" />
+                        </ImageBox>
+                        <TextPartBox>
+                            <h1>{produto.nome}</h1>
+                            <p>{produto.descricao_open}</p>
+                            <h2>R$ {produto.preco}</h2>
+                            <button onClick={() => handleClick(produto.id)}>Quero</button>
+                        </TextPartBox>
+                    </BoxProdutosPequenos>
+                ))}
             </ContainerProdutosPequenos>
 
             <ContainerProdutosGrandes>

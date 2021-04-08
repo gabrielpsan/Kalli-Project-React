@@ -87,6 +87,7 @@ class Cadastro extends Component {
                         <img onClick={() => showValue()} id="olho" src={olho}></img>
                     </div>
                     <button type="submit">Cadastrar</button>
+                    <h2>Já possui uma assinatura? <a href="/login_user">Faça o Login</a></h2>
                 </form>
             </Container>
         );

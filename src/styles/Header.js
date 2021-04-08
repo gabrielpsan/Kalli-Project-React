@@ -33,6 +33,7 @@ export const BottomHeader = styled.div`
     height: 50px;
     padding: 0 20px;
 
+
     h1 {
         font-size: 30px;
         color: #b24a87;

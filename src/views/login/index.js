@@ -49,7 +49,7 @@ class SignIn extends Component {
             <form onSubmit={this.handleSignIn}>
                 <h1>Login</h1>
                 <input
-                    placeholder="E-mail"
+                    placeholder="Usuário"
                     type="text"
                     required
                     onChange={e => this.setState({ username: e.target.value })}

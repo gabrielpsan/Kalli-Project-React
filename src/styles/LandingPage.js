@@ -6,6 +6,7 @@ export const Container = styled.div`
     justify-content: center;
     flex-direction: column;
     width: 100%;
+
 `;
 
 export const Header = styled.div`
@@ -19,7 +20,11 @@ export const TopHeader = styled.div`
     justify-content: center;
     align-items: center;
     background: #FF9A36;
-    height: 35px;
+    height: 35px;    
+    @font-face {
+        font-family: 'RecoletaAlt';
+        src: local(RecoletaAlt), url('../../assets/fonts/RecoletaAlt-Regular.woff'), format('woff');
+    }
 
     h1 {
         position: relative;
@@ -27,6 +32,7 @@ export const TopHeader = styled.div`
         font-size: 20px;
         color: #111111;
         font-weight: 700;
+        font-family: 'RecoletaAlt';
 
         @media only screen and (max-width: 800px) {
             font-size: 18px;
@@ -282,11 +288,11 @@ export const ContainerVoceJaConhece = styled.div`
     }
 
     h1 {
-        font-size: 54px;
+        font-size: 50px;
         color: #FFFFFF;
         
         @media only screen and (max-width: 800px) {
-            font-size: 38px;
+            font-size: 30px;
         }
     }
 
@@ -305,6 +311,7 @@ export const ContainerVoceJaConhece = styled.div`
 
         @media only screen and (max-width: 800px) {
             width: 235px;
+            font-size: 18px;
         }
     }
 `
@@ -426,10 +433,10 @@ export const ContainerFeedback = styled.div`
 `
 
 export const Feedback = styled.div`
-    width: 480px;
+    width: 460px;
     margin-bottom: 30px;
     h1{
-        font-size: 28px;
+        font-size: 20px;
         color: #302F2B;
         text-align: center;
         @media only screen and (max-width: 800px) {
@@ -439,7 +446,7 @@ export const Feedback = styled.div`
 `
 
 export const BordaFeedback = styled.div`
-    height: 40px;
+    height: 30px;
     margin-top: 20px;
     background: #b24a87;
     @media only screen and (max-width: 800px) {
@@ -485,7 +492,7 @@ export const ImgVantagem = styled.div`
         width: 130px;
         margin-top: 10px;
     }
-`   
+`
 
 export const TextVantagem = styled.div`
     h1 {

@@ -53,7 +53,7 @@ export const TextPergunta = styled.div`
     }
 
     h1 {
-        font-size: 28px;
+        font-size: 24px;
         color: #302F2B;
         @media only screen and (max-width: 800px) {
             font-size: 20px;
@@ -95,7 +95,7 @@ export const HidenResposta = styled.div`
 
 
     h1 {    
-        font-size: 26px;
+        font-size: 21px;
         animation: surgirTexto 0.5s ease-in-out;
         @media only screen and (max-width: 800px) {
             font-size: 16px;
