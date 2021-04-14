@@ -17,7 +17,7 @@ export const ContentSlider = styled.div`
     }
 
     @media only screen and (max-width: 800px) {
-        height: 400px;
+        height: 300px;
     }
 `
 

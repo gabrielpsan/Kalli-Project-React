@@ -19,6 +19,9 @@ import { UploadComponent } from '../../components/ComponentUpload'
 
 const AdminNewProduto = (props) => {
 
+
+    const [editObject, setEditObject] = useState([]);
+
     const [nome, setNome] = useState("");
     const [descricao_close, setpDescricao] = useState("");
     const [descricao_open, setsDescricao] = useState("");
@@ -44,84 +47,84 @@ const AdminNewProduto = (props) => {
     var teste = 0;
 
     //Pseudo validação de tamanho mínimo de campos
-    if (nome && nome.length > 10) {
+    // if (nome && nome.length > 10) {
 
-        console.log("pronto")
-        teste = teste + 1;
-        document.querySelector("#validacaoNome").hidden = false;
-    } else if (nome && nome.length < 10) {
-        document.querySelector("#validacaoNome").hidden = true;
-        teste = teste - 1;
-    } else if (!nome) {
-        teste = teste - 1;
+    //     console.log("pronto")
+    //     teste = teste + 1;
+    //     document.querySelector("#validacaoNome").hidden = false;
+    // } else if (nome && nome.length < 10) {
+    //     document.querySelector("#validacaoNome").hidden = true;
+    //     teste = teste - 1;
+    // } else if (!nome) {
+    //     teste = teste - 1;
 
-    }
+    // }
 
-    if (descricao_close && descricao_close.length > 20) {
-        console.log("pronto")
-        teste = teste + 1;
-        document.querySelector("#validacaoPDescricao").hidden = false;
-    } else if (descricao_close && descricao_close.length < 20) {
-        teste = teste - 1;
-        document.querySelector("#validacaoPDescricao").hidden = true;
-    } else if (!descricao_close) {
-        teste = teste - 1;
+    // if (descricao_close && descricao_close.length > 20) {
+    //     console.log("pronto")
+    //     teste = teste + 1;
+    //     document.querySelector("#validacaoPDescricao").hidden = false;
+    // } else if (descricao_close && descricao_close.length < 20) {
+    //     teste = teste - 1;
+    //     document.querySelector("#validacaoPDescricao").hidden = true;
+    // } else if (!descricao_close) {
+    //     teste = teste - 1;
 
-    }
+    // }
 
-    if (descricao_open && descricao_open.length > 20) {
-        console.log("pronto")
-        teste = teste + 1;
-        document.querySelector("#validacaoSDescricao").hidden = false;
-    } else if (descricao_open && descricao_open.length < 20) {
-        teste = teste - 1;
-        document.querySelector("#validacaoSDescricao").hidden = true;
-    } else if (descricao_open === null) {
-        teste = teste - 1;
-        document.querySelector("#validacaoSDescricao").hidden = true;
-    }
+    // if (descricao_open && descricao_open.length > 20) {
+    //     console.log("pronto")
+    //     teste = teste + 1;
+    //     document.querySelector("#validacaoSDescricao").hidden = false;
+    // } else if (descricao_open && descricao_open.length < 20) {
+    //     teste = teste - 1;
+    //     document.querySelector("#validacaoSDescricao").hidden = true;
+    // } else if (descricao_open === null) {
+    //     teste = teste - 1;
+    //     document.querySelector("#validacaoSDescricao").hidden = true;
+    // }
 
-    if (texto && texto.length > 100) {
-        console.log("pronto")
-        teste = teste + 1;
-        document.querySelector("#validacaoTexto").hidden = false;
-    } else if (texto && texto.length < 100) {
-        teste = teste - 1;
-        document.querySelector("#validacaoTexto").hidden = true;
-    } else if (texto === null) {
-        document.querySelector("#validacaoTexto").hidden = true;
-        teste = teste - 1;
-    }
+    // if (texto && texto.length > 100) {
+    //     console.log("pronto")
+    //     teste = teste + 1;
+    //     document.querySelector("#validacaoTexto").hidden = false;
+    // } else if (texto && texto.length < 100) {
+    //     teste = teste - 1;
+    //     document.querySelector("#validacaoTexto").hidden = true;
+    // } else if (texto === null) {
+    //     document.querySelector("#validacaoTexto").hidden = true;
+    //     teste = teste - 1;
+    // }
 
-    if (preco && preco.length > 2) {
-        console.log("pronto")
-        teste = teste + 1;
-        document.querySelector("#validacaoPreco").hidden = false;
-    } else if (preco && preco.length < 3) {
-        teste = teste - 1;
-        document.querySelector("#validacaoPreco").hidden = true;
-    } else if (preco === null) {
-        teste = teste - 1;
-        document.querySelector("#validacaoPreco").hidden = true;
-    }
+    // if (preco && preco.length > 2) {
+    //     console.log("pronto")
+    //     teste = teste + 1;
+    //     document.querySelector("#validacaoPreco").hidden = false;
+    // } else if (preco && preco.length < 3) {
+    //     teste = teste - 1;
+    //     document.querySelector("#validacaoPreco").hidden = true;
+    // } else if (preco === null) {
+    //     teste = teste - 1;
+    //     document.querySelector("#validacaoPreco").hidden = true;
+    // }
 
-    if (imagens && imagens.length > 2) {
-        console.log("pronto")
-        teste = teste + 1;
-        document.querySelector("#validacaoImagem").hidden = false;
-    } else if (imagens && imagens.length < 3) {
-        teste = teste - 1;
-        document.querySelector("#validacaoImagem").hidden = true;
-    } else if (imagens === null) {
-        teste = teste - 1;
-        document.querySelector("#validacaoImagem").hidden = true;
-    }
-    if (teste === 6) {
-        document.querySelector("#buttonSubmit").disabled = false;
-    } else if (teste > 0 && teste < 6) {
-        document.querySelector("#buttonSubmit").disabled = true;
+    // if (imagens && imagens.length > 2) {
+    //     console.log("pronto")
+    //     teste = teste + 1;
+    //     document.querySelector("#validacaoImagem").hidden = false;
+    // } else if (imagens && imagens.length < 3) {
+    //     teste = teste - 1;
+    //     document.querySelector("#validacaoImagem").hidden = true;
+    // } else if (imagens === null) {
+    //     teste = teste - 1;
+    //     document.querySelector("#validacaoImagem").hidden = true;
+    // }
+    // if (teste === 6) {
+    //     document.querySelector("#buttonSubmit").disabled = false;
+    // } else if (teste > 0 && teste < 6) {
+    //     document.querySelector("#buttonSubmit").disabled = true;
 
-    }
+    // }
 
     const fetchPessoayId = () => {
 
@@ -217,7 +220,9 @@ const AdminNewProduto = (props) => {
 
     const enviarProduto = () => {
 
-        if (!nome || !descricao_close || !descricao_open || !texto || !preco || !imagens) {
+        console.log("enviando")
+
+        if (!nome || !descricao_close || !descricao_open || !texto || !preco) {
             setError("Preencha o form por completo para cadastrar um produto!");
             Swal.fire({
                 title: "Erro ao cadastrar!",
@@ -299,7 +304,7 @@ const AdminNewProduto = (props) => {
                             </>
                             : <li onClick={() => setProdutos(true)}><span><img src={produtos}></img></span><h1>Produtos</h1></li>}
                         <li><span><img src={posts}></img></span><h1>Posts</h1></li>
-                        <li><span><img src={usuarios}></img></span><h1>Usuários</h1></li>
+                        <li><span><img src={usuarios}></img></span><Link to="/admin_usuarios"><h1>Usuários</h1></Link></li>
                     </ul>
                 </SideMenu>
                 <ContentPage>
@@ -367,7 +372,7 @@ const AdminNewProduto = (props) => {
                     )}
                     <FileList /> */}
                     <UploadComponent/>
-                    {isEdit ?
+                    {isEdit?
                         <button id="buttonSubmit" onClick={() => editarProduto()} disabled={false}>Editar</button>
                         : <button id="buttonSubmit" onClick={() => enviarProduto()} disabled={false}>Cadastrar</button>}
                 </ContentPage>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, BoxContent, SideMenu, ContentPage, TableData } from '../../styles/AdminProdutoConsulta'
+import { Container, BoxContent, SideMenu, ContentPage, TableData } from '../../styles/AdminUsuarios'
 import api from '../../services/api'
 import { getToken } from '../../services/auth'
 import HeaderComponent from '../../components/Header'
@@ -15,11 +15,11 @@ const AdminConsultaProduto = () => {
 
     const [error, setError] = useState()
     const [isProdutos, setProdutos] = useState(false)
-    const [produtosTable, setProdutosTable] = useState([])
-    const [produtoToEdit, setProdutoToEdit] = useState();
+    const [usuarioTable, setUsuariosTable] = useState([])
+    const [usuarioToEdit, setUsuarioToEdit] = useState();
     const [isEdit, setEdit] = useState(false)
     const history = useHistory();
-    const goEdit = () => history.push(`admin_produtos_insere/${produtoToEdit}`);
+    const goEdit = () => history.push(`admin_produtos_insere/${usuarioToEdit}`);
 
     createTheme('solarized', {
         text: {
@@ -72,42 +72,35 @@ const AdminConsultaProduto = () => {
             sortable: true,
         },
         {
-            name: 'Produto',
+            name: 'Nome',
             selector: 'nome',
             sortable: true,
             center: true,
         },
         {
-            name: 'Primeira Descrição',
-            selector: 'descricao_close',
+            name: 'Username',
+            selector: 'username',
             sortable: true,
             center: true,
         },
         {
-            name: 'Segunda Descrição',
-            selector: 'descricao_close',
+            name: 'Email',
+            selector: 'email',
             sortable: true,
             center: true,
         },
         {
-            name: 'Texto',
-            selector: 'texto',
+            name: 'Data Nascimento',
+            selector: 'nascimento',
             sortable: true,
             center: true,
         },
         {
-            name: 'Preco',
-            selector: 'preco',
+            name: 'Telefone',
+            selector: 'telefone',
             sortable: true,
             center: true,
         },
-        {
-            name: 'Imagens',
-            selector: 'imagens',
-            sortable: true,
-            center: true,
-        },
-
     ];
 
     async function consultaDados() {
@@ -116,22 +109,24 @@ const AdminConsultaProduto = () => {
 
         console.log(header_config);
 
-        await api.get(`/produtos`, { headers: header_config }).then(res => {
-            setProdutosTable(res.data);
+        await api.get(`/usuario`, { headers: header_config }).then(res => {
+            setUsuariosTable(res.data);
             console.log("data: ", res.data);
         });
     }
 
-    const handleChange = (state) => {
-        console.log('Selected Rows: ', state.selectedRows);
-        if (state.selectedRows[0]) {
-            setEdit(true)
-            setProdutoToEdit(state.selectedRows[0].id);
-        } else {
-            setEdit(false)
-        }
-    };
-    console.log(produtoToEdit)
+    // const handleChange = (state) => {
+    //     console.log('Selected Rows: ', state.selectedRows);
+    //     if (state.selectedRows[0]) {
+    //         setEdit(true)
+    //         setUsuarioToEdit(state.selectedRows[0].id);
+    //     } else {
+    //         setEdit(false)
+    //     }
+    // };
+
+
+    console.log(usuarioToEdit)
     useEffect(() => {
         consultaDados();
     }, [])
@@ -147,7 +142,7 @@ const AdminConsultaProduto = () => {
                             <>
                                 <li onClick={() => setProdutos(false)}><span><img src={produtos}></img></span><h1>Produtos</h1></li>
                                 <li><h2><Link to="/admin_produtos_insere">- Novo</Link></h2></li>
-                                <li><h2><Link to="#">- Todos os Produtos</Link></h2></li>
+                                <li><h2><Link to="/admin_produtos_consulta">- Todos os Produtos</Link></h2></li>
                             </>
                             : <li onClick={() => setProdutos(true)}><span><img src={produtos}></img></span><h1>Produtos</h1></li>}
                         <li><span><img src={posts}></img></span><h1>Posts</h1></li>
@@ -158,12 +153,12 @@ const AdminConsultaProduto = () => {
                     <TableData>
                         <DataTable
                             columns={columns}
-                            data={produtosTable}
+                            data={usuarioTable}
                             customStyles={customStyles}
-                            selectableRows={true}
+                            // selectableRows={true}
                             pagination={true}
                             paginationRowsPerPageOptions={[5, 10, 15]}
-                            onSelectedRowsChange={handleChange}
+                            // onSelectedRowsChange={handleChange}
                             theme="solarized"
                             highlightOnHover={true}
                             responsive

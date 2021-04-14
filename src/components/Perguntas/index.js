@@ -24,7 +24,7 @@ const Perguntas = () => {
         <ContainerPerguntas id="perguntas">
             <BoxPerguntas>
                 <Pergunta>
-                    <div data-aos="fade-right" data-aos-offset="200">
+                    <div data-aos="fade-right" data-aos-offset="100">
                         {pergunta1 ?
                             <TextPergunta onClick={() => setPergunta1(false)}>
                                 <h1>pergunta pergunta pergunta pergunta</h1>
@@ -48,7 +48,7 @@ const Perguntas = () => {
                     </div>
                 </Pergunta>
                 <Pergunta>
-                    <div data-aos="fade-right" data-aos-offset="200">
+                    <div data-aos="fade-right" data-aos-offset="100">
                         {pergunta2 ?
                             <TextPergunta onClick={() => setPergunta2(false)}>
                                 <h1>pergunta pergunta pergunta pergunta</h1>
@@ -72,7 +72,7 @@ const Perguntas = () => {
                     </div>
                 </Pergunta>
                 <Pergunta>
-                    <div data-aos="fade-right" data-aos-offset="200">
+                    <div data-aos="fade-right" data-aos-offset="100">
                         {pergunta3 ?
                             <TextPergunta onClick={() => setPergunta3(false)}>
                                 <h1>pergunta pergunta pergunta pergunta</h1>
@@ -96,7 +96,7 @@ const Perguntas = () => {
                     </div>
                 </Pergunta>
                 <Pergunta>
-                    <div data-aos="fade-right" data-aos-offset="200">
+                    <div data-aos="fade-right" data-aos-offset="100">
                         {pergunta4 ?
                             <TextPergunta onClick={() => setPergunta4(false)}>
                                 <h1>pergunta pergunta pergunta pergunta</h1>
@@ -144,7 +144,7 @@ const Perguntas = () => {
                     </div>
                 </Pergunta>
                 <Pergunta>
-                    <div data-aos="fade-right" data-aos-offset="200">
+                    <div data-aos="fade-right" data-aos-offset="100">
                         {pergunta6 ?
                             <TextPergunta onClick={() => setPergunta6(false)}>
                                 <h1>pergunta pergunta pergunta pergunta</h1>
@@ -168,7 +168,7 @@ const Perguntas = () => {
                     </div>
                 </Pergunta>
                 <Pergunta>
-                    <div data-aos="fade-right" data-aos-offset="200">
+                    <div data-aos="fade-right" data-aos-offset="100">
                         {pergunta7 ?
                             <TextPergunta onClick={() => setPergunta7(false)}>
                                 <h1>pergunta pergunta pergunta pergunta</h1>

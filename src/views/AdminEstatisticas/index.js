@@ -75,7 +75,7 @@ const AdminConsultaProduto = () => {
                             </>
                             : <li onClick={() => setProdutos(true)}><span><img src={produtos}></img></span><h1>Produtos</h1></li>}
                         <li><span><img src={posts}></img></span><h1>Posts</h1></li>
-                        <li><span><img src={usuarios}></img></span><h1>Usuários</h1></li>
+                        <li><span><img src={usuarios}></img></span><Link to="/admin_usuarios"><h1>Usuários</h1></Link></li>
                     </ul>
                 </SideMenu>
                 <ContentPage>

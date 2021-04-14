@@ -56,7 +56,7 @@ export const TextPergunta = styled.div`
         font-size: 24px;
         color: #302F2B;
         @media only screen and (max-width: 800px) {
-            font-size: 20px;
+            font-size: 14px;
         }
     }
 
@@ -72,8 +72,8 @@ export const TextPergunta = styled.div`
         width: 20px;
         height: 20px;
         @media only screen and (max-width: 800px) {
-            width: 15px;
-            height: 15px;
+            width: 12px;
+            height: 12px;
         }
     }
 `
@@ -98,7 +98,7 @@ export const HidenResposta = styled.div`
         font-size: 21px;
         animation: surgirTexto 0.5s ease-in-out;
         @media only screen and (max-width: 800px) {
-            font-size: 16px;
+            font-size: 12px;
             color: #2C2C2C;
         }
     }

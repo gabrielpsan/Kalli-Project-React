@@ -107,7 +107,7 @@ export const TextSubSlider = styled.div`
         font-size: 38px;
         color: #302F2B;
         @media only screen and (max-width: 800px) {
-            font-size: 32px;
+            font-size: 28px;
         }
     }
 
@@ -135,6 +135,7 @@ export const BoxProdutosPequenos = styled.div`
     height: 425px;
     @media only screen and (max-width: 800px) {
         width: 95%;
+        height: 400px;
         margin-bottom: 10px;
     }
 
@@ -147,9 +148,13 @@ export const ImageBox = styled.div`
     width: 375px;
     height: 260px;
     background: #E3568B;
+
     @media only screen and (max-width: 800px) {
         width: 100%;
+        height: 200px;
+        margin-bottom: 10px;
     }
+
     img {
         width: 97.9%;
         height: 97%;
@@ -160,11 +165,19 @@ export const TextPartBox = styled.div`
     h1 {
         font-size: 28px;
         margin-top: 2px;
+
+        @media only screen and (max-width: 800px) {
+            font-size: 24px;
+        }
     }
 
     h2 {
         font-size: 26px;
         margin-top: 10px;
+
+        @media only screen and (max-width: 800px) {
+            font-size: 22px;
+        }
     }
 
     p{
@@ -185,6 +198,11 @@ export const TextPartBox = styled.div`
         :hover {
             opacity: 0.8;
             cursor: pointer;
+        }
+
+        @media only screen and (max-width: 800px) {
+            width: 150px;
+            height: 35px;
         }
     }
 `
@@ -214,6 +232,12 @@ export const ImageBoxGrandes = styled.div`
     height: 300px;
     background: #E3568B;
 
+    @media only screen and (max-width: 800px) {
+        width: 100%;    
+        height: 225px;
+        margin-bottom: 10px;
+    }
+
     img {
         width: 99%;
         height: 97.9%;
@@ -241,12 +265,20 @@ export const TextPartBoxGrandes = styled.div`
         font-size: 28px;
         margin-top: 2px;
         color: #302F2B;
+
+        @media only screen and (max-width: 800px) {
+            font-size: 24px;
+        }
     }
 
     h2 {
         font-size: 26px;
         margin-top: 10px;
         color: #302F2B;
+
+        @media only screen and (max-width: 800px) {
+            font-size: 22px;
+        }
     }
 
     p{
@@ -255,6 +287,10 @@ export const TextPartBoxGrandes = styled.div`
         opacity: 0.9;
         margin-top: 10px;
         color: #302F2B;
+
+        @media only screen and (max-width: 800px) {
+            font-size: 14x;
+        }
     }
 
     button {
@@ -268,6 +304,12 @@ export const TextPartBoxGrandes = styled.div`
         :hover {
             opacity: 0.8;
             cursor: pointer;
+        }
+
+        @media only screen and (max-width: 800px) {
+            width: 150px;
+            height: 35px;
+            font-size: 18px;
         }
     }
 `
@@ -284,7 +326,7 @@ export const ContainerVoceJaConhece = styled.div`
     text-align: center;
 
     @media only screen and (max-width: 800px) {
-        height: 400px;
+        height: 350px;
     }
 
     h1 {
@@ -292,7 +334,8 @@ export const ContainerVoceJaConhece = styled.div`
         color: #FFFFFF;
         
         @media only screen and (max-width: 800px) {
-            font-size: 30px;
+            font-size: 26px;
+            width: 97%;
         }
     }
 
@@ -310,8 +353,9 @@ export const ContainerVoceJaConhece = styled.div`
         }
 
         @media only screen and (max-width: 800px) {
-            width: 235px;
-            font-size: 18px;
+            height: 40px;
+            width: 205px;
+            font-size: 16px;
         }
     }
 `
@@ -329,7 +373,7 @@ export const TitleRedes = styled.div`
         color: #302F2B;
 
         @media only screen and (max-width: 800px) {
-            font-size: 28px;
+            font-size: 24px;
         }
     }
 
@@ -353,8 +397,8 @@ export const Redes = styled.div`
     background: #b24a87;
     margin-bottom: 20px;
     @media only screen and (max-width: 800px) {
-        width: 305px;
-        height: 270px;
+        width: 235px;
+        height: 210px;
     }
 `
 
@@ -370,7 +414,7 @@ export const TextSubRedes = styled.div`
         color: #b24a87;
         text-align: center;
         @media only screen and (max-width: 800px) {
-            font-size: 24px;
+            font-size: 20px;
         }
     }
 `
@@ -392,7 +436,7 @@ export const TitlePerguntas = styled.div`
         font-size: 50px;
         color: #b24a87;
         @media only screen and (max-width: 800px) {
-            font-size: 30px;
+            font-size: 26px;
             margin-top: 30px;
         }
     }
@@ -402,7 +446,7 @@ export const TitlePerguntas = styled.div`
         font-size: 24px;
         color: #302F2B;
         @media only screen and (max-width: 800px) {
-            font-size: 20px;
+            font-size: 16px;
         }
     }
 `
@@ -414,7 +458,7 @@ export const TitleFeedback = styled.div`
         text-align: center;
         font-size: 48px;
         @media only screen and (max-width: 800px) {
-            font-size: 28px;
+            font-size: 24px;
         }
     }
 `
@@ -427,6 +471,7 @@ export const ContainerFeedback = styled.div`
     flex-wrap: wrap;
     margin-top: 100px;
     width: 90%;
+
     @media only screen and (max-width: 800px) {
         margin-top: 50px;
     }
@@ -440,7 +485,7 @@ export const Feedback = styled.div`
         color: #302F2B;
         text-align: center;
         @media only screen and (max-width: 800px) {
-            font-size: 18px;
+            font-size: 14px;
         }
     }
 `
@@ -541,7 +586,7 @@ export const TopNovidades = styled.div`
         margin-top: 20px;
     }
     h1 {
-        font-size: 30px;
+        font-size: 22px;
         color: #FFFFFF;
         text-align: center;
         margin-right: 40px;
@@ -554,11 +599,11 @@ export const TopNovidades = styled.div`
     input {
 
         width: 460px;
-        height: 55px;
+        height: 50px;
         border: none;
         padding: 10px 10px;
         margin-right: 40px;
-        font-size: 30px;
+        font-size: 20px;
         color: #b24a87;
         font-weight: 700;
         @media only screen and (max-width: 1000px) {
@@ -571,7 +616,7 @@ export const TopNovidades = styled.div`
 
         ::-webkit-input-placeholder{
             padding: 10px 10px;
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 700;
             color: #b24a87;
             @media only screen and (max-width: 1000px) {
@@ -582,7 +627,7 @@ export const TopNovidades = styled.div`
 
     button {
         width: 150px;
-        height: 50px;
+        height: 45px;
         border: none;
         background: #FF9A36;
         font-size: 28px;
@@ -611,7 +656,7 @@ export const BottomNovidades = styled.div`
         margin-top: 20px;
     }
     h1 {
-        font-size: 30px;
+        font-size: 22px;
         color: #FFFFFF;
         text-align: center;
         margin-right: 40px;
@@ -619,7 +664,7 @@ export const BottomNovidades = styled.div`
         @media only screen and (max-width: 1000px) {
             margin-right: 0px;
             /* margin-bottom: 20px; */
-            font-size: 18px;
+            font-size: 14px;
         }
     }
 `
@@ -653,7 +698,8 @@ export const EsquerdaNovidade = styled.div`
 export const MeioNovidade = styled.div`
     display: flex;
     justify-content: center;
-    width: 33%;
+    flex-wrap: wrap;
+    width: 60%;
     @media only screen and (max-width: 1000px) {
         width: 100%;
     }
@@ -667,3 +713,29 @@ export const DireitaNovidade = styled.div`
         width: 100%;
     }
 `
+
+
+export const ButtonInicio = styled.div`
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    .back_to_top-show {
+        display: block;
+    }
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 50%;
+        background: #FF9A36;
+        border: 3px solid #FFF;
+        cursor: pointer;
+    }
+`
+
+

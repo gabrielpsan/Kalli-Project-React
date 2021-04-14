@@ -4,7 +4,7 @@ import api from "../../services/api";
 import { login } from "../../services/auth";
 import { Container } from "../../styles/Login";
 import olho from '../../utils/img/olho.png';
-
+import Swal from 'sweetalert2';
 class SignIn extends Component {
   state = {
     username: "",
@@ -21,7 +21,23 @@ class SignIn extends Component {
       try {
         const response = await api.post("/login", { username, password });
         login(response.data.token);
+        console.log(response)
         this.props.history.push("/");
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'center-left',
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+        Toast.fire({
+          icon: 'success',
+          title: `Bem-vindo ${username}!` 
+        })
       } catch (err) {
         this.setState({
           error:

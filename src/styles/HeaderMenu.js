@@ -18,7 +18,6 @@ export const Container = styled.div`
     @media only screen and (max-width: 800px) {
         left: 0px;
         width: 200px;
-        height: 350px;
     }
 `;
 
@@ -34,6 +33,8 @@ export const BoxContent = styled.div`
             border-top: 1px solid #b4b4b4;
         }
     }
+
+
 
     ul{
         list-style-type: none;
@@ -52,7 +53,7 @@ export const BoxContent = styled.div`
         align-items: center;
         justify-content: center;
         height: 40px;
-        font-size: 20px;
+        font-size: 17px;
         color: #B24A87;
         font-weight: 600;
         :hover {
@@ -82,6 +83,7 @@ export const DivUsuario = styled.div`
     margin-bottom: 10px;
     padding: 10px 0;
     border: 1px solid #f1e0ea;
+
     span{
         display: flex;
         justify-content: center;
@@ -99,9 +101,20 @@ export const DivUsuario = styled.div`
 
     a {
         font-weight: 600;
+        font-size: 13px;
     }
 
+    :hover {
+        cursor: pointer;
+    }
 
 
 `
 
+
+export const DadosPessoais = styled.div`
+    h3 {
+        font-size: 12px;
+        color: #B24A87;
+    }
+`

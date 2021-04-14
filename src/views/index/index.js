@@ -4,11 +4,13 @@ import {
     ImageBox, TextPartBox, ContainerProdutosGrandes, BoxProdutosGrandes, ImageBoxGrandes,
     ImageBoxGrandesDark, TextPartBoxGrandes, ContainerVoceJaConhece, TitleRedes, TitlePerguntas, TitleFeedback,
     ContainerFeedback, Feedback, BordaFeedback, ContainerVantagens, Vantagem, ImgVantagem, TextVantagem,
-    ContainerNovidades, TopNovidades, BottomNovidades, RedesSociaisNovidades, EsquerdaNovidade, MeioNovidade, DireitaNovidade
+    ContainerNovidades, TopNovidades, BottomNovidades, RedesSociaisNovidades, EsquerdaNovidade, MeioNovidade,
+    DireitaNovidade, ButtonInicio
 } from '../../styles/LandingPage'
 import "aos/dist/aos.css";
 
 import instagram from '../../utils/img/instagram.png'
+import arrow from '../../utils/img/arrow-up.png'
 import facebook from '../../utils/img/facebook.png'
 import produto1 from '../../utils/img/produto1.jpg'
 import produto2 from '../../utils/img/produto2.jpg'
@@ -27,16 +29,6 @@ import { getToken } from '../../services/auth'
 
 const LandingPage = () => {
 
-    // function detectaApareceu() {
-    //     document.querySelectorAll('img').forEach((img, index) => {
-    //         if(img.getBoundingClientRect().top < window.innerHeight){
-    //             // console.log('Imagem apareceu', index);
-    //             img.src = img.getAttribute('data-src');
-    //         };
-    //     })
-    // }
-
-    // window.addEventListener('scroll', detectaApareceu);
 
     const [usuarios, setUsuarios] = useState([]);
     const [produtos, setProdutos] = useState([]);
@@ -66,7 +58,6 @@ const LandingPage = () => {
         });
     }
 
-
     // console.log("dados", usuarios);
 
     let history = useHistory();
@@ -74,7 +65,6 @@ const LandingPage = () => {
     function handleClick(id) {
         history.push(`/produto/${id}`);
     }
-
     
     // async function consultaUsuarioLogado() {
     //     const token = getToken();
@@ -89,6 +79,14 @@ const LandingPage = () => {
     //     });
     // }
 
+    // var userFeed = new Instafeed({
+	// 	get: 'user',
+	// 	target: "instafeed-container",
+    // 	resolution: 'low_resolution',
+	// 	accessToken: 'YOUR_INSTAGRAM_ACCESS_TOKEN_GOES_HERE'
+	// });
+	// userFeed.run();
+
     useEffect(() => {
 
 
@@ -100,15 +98,14 @@ const LandingPage = () => {
 
     return (
         <Container>
-            <HeaderComponent />
+            <HeaderComponent id="top"/>
             <Slider />
             <TextSubSlider>
-                <h1>A sua box de assinatura de produtos de beleza</h1>
+                <h1 id="produtos">A sua box de assinatura de produtos de beleza</h1>
                 <img src={imgNovo} alt="kalli" />
             </TextSubSlider>
 
             <ContainerProdutosPequenos>
-
                 {produtos.map((produto) => (
                     <BoxProdutosPequenos>
                         <ImageBox>
@@ -159,7 +156,9 @@ const LandingPage = () => {
             </TitleRedes>
 
             <BoxRedes>
-                <Redes></Redes>
+                <Redes>
+                    <div id="instafeed-container"></div>
+                </Redes>
                 <Redes></Redes>
                 <Redes></Redes>
             </BoxRedes>
@@ -257,7 +256,6 @@ const LandingPage = () => {
                 </Vantagem>
             </ContainerVantagens>
 
-
             <ContainerNovidades>
                 <TopNovidades>
                     <EsquerdaNovidade>
@@ -268,9 +266,9 @@ const LandingPage = () => {
                     </EsquerdaNovidade>
                     <MeioNovidade>
                         <input placeholder="Seu e-mail"></input>
+                        <button>enviar</button>
                     </MeioNovidade>
                     <DireitaNovidade>
-                        <button>enviar</button>
                     </DireitaNovidade>
                 </TopNovidades>
                 <BottomNovidades>
@@ -290,7 +288,9 @@ const LandingPage = () => {
                     </h1>
                 </BottomNovidades>
             </ContainerNovidades>
-
+            <ButtonInicio>
+                <a href="#top"><button><img src={arrow}/></button></a>
+            </ButtonInicio>
         </Container>
     )
 };

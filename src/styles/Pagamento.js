@@ -20,15 +20,14 @@ export const ContainerPagamento = styled.div`
     margin-bottom: 50px;
     @media only screen and (max-width: 800px) {
         width: 100%;
-        flex-direction: column-reverse;
-
+        flex-direction: column;
     } 
 `;
 
 
 export const LeftPagamentoInputs = styled.div`
     width: 70%;
-
+    margin-bottom: 50px;
     @media only screen and (max-width: 800px) {
         width: 100%;
     }
@@ -40,11 +39,10 @@ export const RightPagamento = styled.div`
     justify-content: center;
     align-items: center;
     position: relative;
-    
     @media only screen and (max-width: 800px) {
-        width: 100%;
-        height: 250px;
+        display: none;
     } 
+
     
     img {
         width: 100%;
@@ -62,8 +60,8 @@ export const RightConteudo = styled.div`
     z-index: 999999;
     padding: 40px 20px;
 
-    @media only screen and (max-width: 800px) {
-        width: 95%;
+    @media only screen and (max-width: 1200px) {
+        display: none;
     } 
 
     .imgPagamento {
@@ -114,6 +112,9 @@ export const Passos = styled.div`
             height: 80%;
             margin-right: 10px;
         }
+    }
+
+    .logo {
         @media only screen and (max-width: 800px) {
             display: none;
         } 
@@ -158,12 +159,23 @@ export const Passos = styled.div`
             height: 35px;
             font-size: 10px;
         }
+
+        img {
+            width: 24px;
+            height: 24px;
+            margin: 0;
+        }
     }
 
     .ok {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background: #FF9A36;
         border: none;
         color: #FFFFFF;
+
+
     }
 `;
 
@@ -185,10 +197,19 @@ export const ProdutoDiv = styled.div`
     padding: 20px;
     background: #FFF6EE;
 
+    @media only screen and (max-width: 900px) {
+        width: 350px;
+        height: 250px;
+    }
+
     h3 {
         color: #111;
         margin-bottom: 30px;
         font-size: 20px;
+        @media only screen and (max-width: 900px) {
+            margin-bottom: 0px;
+            font-size: 14px;
+        }
     }
 
     .divImagemProduto {
@@ -196,22 +217,40 @@ export const ProdutoDiv = styled.div`
         align-items: center;
         margin-top: 40px;
 
+        @media only screen and (max-width: 900px) {
+            margin-top: 10px;
+        }
+
         img {
             width: 150px;
             height: 170px;
             margin-right: 20px;
             border-radius: 5px;
+
+            @media only screen and (max-width: 900px) {
+                width: 100px;
+                height: 100px;
+            }
         }
 
         h1 {
             font-weight: 700;
             color: #b24a87;
+
+            @media only screen and (max-width: 900px) {
+                font-size: 20px;
+            }
         }
 
         h2 {
             font-size: 20px;
             color: #111;
             margin-bottom: 10px;
+
+            
+            @media only screen and (max-width: 900px) {
+                font-size: 16px;
+            }
         }
 
         button {
@@ -226,6 +265,11 @@ export const ProdutoDiv = styled.div`
             margin-top: 20px;
             :hover {
                 cursor: pointer;
+            }
+
+            @media only screen and (max-width: 900px) {
+                width: 120px;
+                height: 30px;
             }
         }
     }
@@ -260,13 +304,22 @@ export const Input = styled.div`
     margin-bottom: 40px;
     margin-right: 10px;
 
+    @media only screen and (max-width: 900px) {
+        margin-top: 20px;
+    }
+
     input {
         padding: 0 10px;
         width: 30vw;
         height: 40px;
         border: none;
         border-bottom: 3px solid #b4b4b4;
-        font-size: 20px;
+        font-size: 16px;
+
+        @media only screen and (max-width: 900px) {
+            height: 35px;
+            border-bottom: 1px solid #b4b4b4;
+        }
     }
 
     .cep {
@@ -289,6 +342,10 @@ export const Input = styled.div`
         color: #8b8b8b;
         font-size: 16px;
         font-weight: 500;
+
+        @media only screen and (max-width: 900px) {
+            font-size: 14px;
+        }
     }
 
 `
@@ -313,6 +370,11 @@ export const ButtonDiv = styled.div`
         :hover {
             cursor: pointer;
         }
+        @media only screen and (max-width: 900px) {
+            width: 150px;
+            height: 40px;
+            font-size: 16px;
+        }
     }
 
     .voltar:active {
@@ -333,6 +395,12 @@ export const ButtonDiv = styled.div`
         :hover {
             cursor: pointer;
         }
+
+        @media only screen and (max-width: 900px) {
+            width: 150px;
+            height: 40px;
+            font-size: 16px;
+        }
     }
 
     .proximo:active {
@@ -345,4 +413,12 @@ export const PagamentoDiv = styled.div`
     form {
         margin-bottom: 50px;
     }
+`
+
+
+export const DadosEntrega = styled.div`
+
+    width: 100%;
+    border: 3px solid #b24a87;
+    
 `

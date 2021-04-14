@@ -7,10 +7,12 @@ import Produto from './views/produto/index'
 import AdminNewProduto from './views/AdminProdutoInsere/index'
 import AdminSearchProduto from './views/AdminProdutoConsulta/index'
 import AdminEstatisticas from './views/AdminEstatisticas/index'
+import AdminUsuarios from './views/AdminUsuarios/index'
 import Pagamento from './views/pagamento/index'
 import api from './services/api'
 import { isAuthenticated } from "./services/auth"
 import { getToken } from './services/auth'
+import Questionario from "./views/Questionario";
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -28,7 +30,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 export default function Routes() {
 
-  const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState([false]);
 
   async function consultaDados() {
     const token = getToken();
@@ -58,9 +60,12 @@ export default function Routes() {
           <PrivateRoute path="/admin_produtos_insere/:id" component={AdminNewProduto} exact />
           <PrivateRoute path="/admin_produtos_consulta" component={AdminSearchProduto} exact />
           <PrivateRoute path="/admin_estatisticas" component={AdminEstatisticas} exact />
-          <PrivateRoute path="/pagamento/produto:id" component={Pagamento} exact/>
+          <PrivateRoute path="/admin_usuarios" component={AdminUsuarios} exact />
         </>
         : null}
+      <PrivateRoute path="/pagamento/produto:id" component={Pagamento} exact />
+      <PrivateRoute path="/questionario" component={Questionario} exact />
+
       <Route path="/produto/:id" component={Produto} exact />
 
     </BrowserRouter>

@@ -19,7 +19,7 @@ import HeaderComponent from '../../components/Header';
 import api from '../../services/api'
 import { getToken } from '../../services/auth'
 import { useHistory } from "react-router-dom";
-
+import Swal from 'sweetalert2'
 // class  extends Component {
 const Produto = (props) => {
 
@@ -53,7 +53,27 @@ const Produto = (props) => {
     };
 
     function handleClick(id) {
-        history.push(`/pagamento/produto${id}`);
+        const token = getToken();
+
+        if(!token){
+            Swal.fire({
+                title: 'OPS! Faça o Login para prosseguir com a compra.',
+                width: 600,
+                padding: '3em',
+                background: '#FFF url(/images/trees.png)',
+                color: '#FFF', 
+                confirmButtonText: 'Login',
+                confirmButtonColor: '#B24A87',
+                backdrop: `
+                  rgba(1, 1, 1, 0.3)
+                  url("/images/nyan-cat.gif")
+                  left top
+                  no-repeat
+                `
+              })
+        } else {
+            history.push(`/pagamento/produto${id}`);
+        }
         // console.log("produto clicado: ", id)
     }
 
@@ -85,7 +105,7 @@ const Produto = (props) => {
     return (
         <Container>
             <HeaderComponent />
-            <ContainerViewProduto>
+            <ContainerViewProduto id="produto-ver-mais">
                 <LeftViewProduto>
                     <ContainerImagemGrande>
                         <img src={items[0].title} alt="imagem_produto" />
