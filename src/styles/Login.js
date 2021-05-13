@@ -18,7 +18,6 @@ export const Container = styled.div`
 
         @media only screen and (max-width: 1000px) {
             width: 100%;
-
         }
 
         h1 {
@@ -98,6 +97,12 @@ export const Container = styled.div`
                     cursor: pointer;
                 }
             } 
+        }
+
+        .erroLogin {
+            font-size: 12px;
+            margin-bottom: 20px;
+            color: red;
         }
     }
 `

@@ -136,7 +136,7 @@ export const BoxProdutosPequenos = styled.div`
     @media only screen and (max-width: 800px) {
         width: 95%;
         height: 400px;
-        margin-bottom: 10px;
+        margin-bottom: 0px;
     }
 
 `
@@ -213,6 +213,10 @@ export const ContainerProdutosGrandes = styled.div`
     width: 100%;
     margin-top: 100px;
     flex-wrap: wrap;
+
+    @media only screen and (max-width: 800px) {
+        margin-top: 20px;
+    }
 `
 
 export const BoxProdutosGrandes = styled.div`

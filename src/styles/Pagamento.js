@@ -409,9 +409,100 @@ export const ButtonDiv = styled.div`
 `
 
 export const PagamentoDiv = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
 
     form {
+        padding: 20px 20px;
         margin-bottom: 50px;
+        width: 90%;
+        background: #f3f3f3;
+    }
+
+    .divPrincipal {
+        display: flex;
+        justify-content: center;
+        width: 90%;
+    }
+
+    .divComprador {
+        padding: 20px 20px;
+        /* border: 3px solid #d3d3d3; */
+        border-radius: 5px;
+    }
+
+    .divEmail {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            font-weight: 600;
+            font-size: 16px;
+            color: #4D4D4D;
+        }
+
+        input {
+            font-size: 16px;
+            font-weight: 500;
+            width: 300px;
+            height: 30px;
+            padding: 0 3px;
+            margin-bottom: 10px;
+            border: none;
+            border-bottom: 3px solid #a3a3a3;
+            background: #efefef;
+            color: #4D4D4D;
+        }
+
+    }
+
+    select {
+        width: 350px;
+        height: 30px;
+        background: #efefef;
+        margin-bottom: 10px;
+        border: none;
+        border-bottom: 3px solid #a3a3a3;
+    }
+
+    .textoComprador {
+        font-size: 20px;
+        font-weight: 600;
+        color: #33C5F0;
+    }
+
+    .proximo {
+        width: 200px;
+        height: 45px;
+        border: none;
+        color: #FFFFFF;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 5px;
+        background: #FF9A36;
+
+        :hover {
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 900px) {
+            width: 150px;
+            height: 40px;
+            font-size: 16px;
+        }
+    }
+
+    .proximo:active {
+        background: #ffa851;
+    }
+
+    .send {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
     }
 `
 

@@ -13,12 +13,15 @@ class SignIn extends Component {
   };
 
   handleSignIn = async e => {
+
     e.preventDefault();
     const { username, password } = this.state;
     if (!username || !password) {
       this.setState({ error: "Preencha nome de usuário e senha para continuar!" });
     } else {
       try {
+
+
         const response = await api.post("/login", { username, password });
         login(response.data.token);
         console.log(response)
@@ -36,12 +39,18 @@ class SignIn extends Component {
         })
         Toast.fire({
           icon: 'success',
-          title: `Bem-vindo ${username}!` 
+          title: `Bem-vindo ${username}!`
         })
       } catch (err) {
+        var div = document.getElementById('erro');
+        setTimeout(function() {
+            div.style.display = 'none';
+        }, 3000);
+
+        console.log(err)
         this.setState({
           error:
-            "Houve um problema com o login, verifique suas credenciais. T.T"
+            "Dados incorretos, por favor verificar!"
         });
       }
     }
@@ -49,43 +58,44 @@ class SignIn extends Component {
 
   render() {
 
-    
+
+
     function showValue() {
-        let input = document.querySelector('#pass');
-        console.log("input: ", input);
-        if(input.getAttribute('type') === 'password'){
-            input.setAttribute('type', 'text');
-        } else {
-            input.setAttribute('type', 'password');
-        }
+      let input = document.querySelector('#pass');
+      console.log("input: ", input);
+      if (input.getAttribute('type') === 'password') {
+        input.setAttribute('type', 'text');
+      } else {
+        input.setAttribute('type', 'password');
+      }
     };
 
     return (
-        <Container>
-            <form onSubmit={this.handleSignIn}>
-                <h1>Login</h1>
-                <input
-                    placeholder="Usuário"
-                    type="text"
-                    required
-                    onChange={e => this.setState({ username: e.target.value })}
-                />
-                <div className="divInputOlho">
-                    <input
-                        id="pass" 
-                        placeholder="Senha" 
-                        type="password" 
-                        required
-                        onChange={e => this.setState({ password: e.target.value })}
-                    />
-                    <img onClick={() => showValue()} class="olho" src={olho}></img>
-                </div>
-
-                <a>Esqueci minha senha</a>
-                <button type="submit">Entrar</button>
-                <h2>Ainda não possui uma assinatura? <a href="/cadastrar"> Associe-se</a></h2>
-            </form>
-        </Container>
+      <Container>
+        <form onSubmit={this.handleSignIn}>
+          <h1>Login</h1>
+          <input
+            placeholder="Usuário"
+            type="text"
+            required
+            onChange={e => this.setState({ username: e.target.value })}
+          />
+          <div className="divInputOlho">
+            <input
+              id="pass"
+              placeholder="Senha"
+              type="password"
+              required
+              onChange={e => this.setState({ password: e.target.value })}
+            />
+            <img onClick={() => showValue()} className="olho" src={olho}></img>
+          </div>
+          <p className="erroLogin" id="erro">{this.state.error}</p>
+          <a>Esqueci minha senha</a>
+          <button type="submit">Entrar</button>
+          <h2>Ainda não possui uma assinatura? <a href="/cadastrar"> Associe-se</a></h2>
+        </form>
+      </Container>
     );
   }
 }

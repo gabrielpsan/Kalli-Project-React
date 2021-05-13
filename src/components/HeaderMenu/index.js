@@ -49,47 +49,6 @@ const HeaderMenu = () => {
     return (
         <Container>
             <BoxContent>
-                {getToken() ?
-                    <ul>
-                        {isDados ?
-                            <>
-                                <DivUsuario onClick={() => setDados(false)}>
-                                    <span><img src={user} /></span>
-                                    <a>Olá {usuarioLogado.username}!</a>
-                                </DivUsuario>
-                                <DadosPessoais>
-                                    <h3>Nome:</h3><br />
-                                    <h3>{usuarioLogado.nome}</h3><br />
-                                    <h3>Email:</h3><br />
-                                    <h3>{usuarioLogado.email}</h3><br />
-                                    <h3>Telefone:</h3><br />
-                                    <h3>{usuarioLogado.telefone}</h3><br />
-                                </DadosPessoais>
-                            </>
-                            :
-                            <DivUsuario onClick={() => setDados(true)}>
-                                <span><img src={user} /></span>
-                                <a>Olá {usuarioLogado.username}!</a>
-                            </DivUsuario>
-                        }
-                        <Link to='/questionario'><li>Questionário</li></Link>
-                        <a><li>Assinatura</li></a>
-                        {isMinhaBox ?
-                            <li className="subLi" onClick={() => setMinhaBox(false)}>Minha Box</li>
-                            : <li className="subLi" onClick={() => setMinhaBox(true)}>Minha Box</li>}
-                        {isMinhaBox ?
-                            <DivMinhaBox>
-                                <span>- Quantas já pagou?</span>
-                                <span>- Chega em</span>
-                                <span>- Status</span>
-                            </DivMinhaBox>
-                            : null}
-                        {admin ?
-                            <Link to='/admin_estatisticas'><li>Administração</li></Link>
-                            : null}
-
-                    </ul>
-                    : null}
                 <ul className="separa">
                     <a href="/#produtos"><li>Box Kalli</li></a>
                     <a href="/#perguntas"><li>FAQ</li></a>

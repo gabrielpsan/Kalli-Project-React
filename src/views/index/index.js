@@ -26,6 +26,7 @@ import HeaderComponent from '../../components/Header';
 import { useHistory } from "react-router-dom";
 import api from '../../services/api'
 import { getToken } from '../../services/auth'
+import BottomFolderComponent from '../../components/BottomFolder';
 
 const LandingPage = () => {
 
@@ -65,7 +66,7 @@ const LandingPage = () => {
     function handleClick(id) {
         history.push(`/produto/${id}`);
     }
-    
+
     // async function consultaUsuarioLogado() {
     //     const token = getToken();
     //     const header_config = { 'x-access-token': `${token}` };
@@ -80,12 +81,12 @@ const LandingPage = () => {
     // }
 
     // var userFeed = new Instafeed({
-	// 	get: 'user',
-	// 	target: "instafeed-container",
+    // 	get: 'user',
+    // 	target: "instafeed-container",
     // 	resolution: 'low_resolution',
-	// 	accessToken: 'YOUR_INSTAGRAM_ACCESS_TOKEN_GOES_HERE'
-	// });
-	// userFeed.run();
+    // 	accessToken: 'YOUR_INSTAGRAM_ACCESS_TOKEN_GOES_HERE'
+    // });
+    // userFeed.run();
 
     useEffect(() => {
 
@@ -98,7 +99,7 @@ const LandingPage = () => {
 
     return (
         <Container>
-            <HeaderComponent id="top"/>
+            <HeaderComponent id="top" />
             <Slider />
             <TextSubSlider>
                 <h1 id="produtos">A sua box de assinatura de produtos de beleza</h1>
@@ -256,7 +257,7 @@ const LandingPage = () => {
                 </Vantagem>
             </ContainerVantagens>
 
-            <ContainerNovidades>
+            {/* <ContainerNovidades>
                 <TopNovidades>
                     <EsquerdaNovidade>
                         <h1>
@@ -287,9 +288,10 @@ const LandingPage = () => {
                         Política de vendas<br />
                     </h1>
                 </BottomNovidades>
-            </ContainerNovidades>
+            </ContainerNovidades> */}
+            <BottomFolderComponent />
             <ButtonInicio>
-                <a href="#top"><button><img src={arrow}/></button></a>
+                <a href="#top"><button><img src={arrow} /></button></a>
             </ButtonInicio>
         </Container>
     )

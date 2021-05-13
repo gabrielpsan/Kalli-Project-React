@@ -11,6 +11,7 @@ import api from '../../services/api'
 import { logout, getToken } from '../../services/auth'
 import "aos/dist/aos.css";
 import HeaderMenu from '../HeaderMenu'
+import HeaderMenuLogado from '../HeaderMenuLogado'
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -18,7 +19,8 @@ const HeaderComponent = () => {
 
     let history = useHistory();
     const [admin, setAdmin] = useState();
-    const [isAparece, setAparece] = useState(false);
+    const [isAparece1, setAparece1] = useState(false);
+    const [isAparece2, setAparece2] = useState(false);
 
     useEffect(() => {
         Aos.init({ duration: 500 });
@@ -28,7 +30,7 @@ const HeaderComponent = () => {
         logout()
     }
 
-    function goToLogin(){
+    function goToLogin() {
         history.push(`/login_user`);
 
     }
@@ -58,21 +60,28 @@ const HeaderComponent = () => {
             </TopHeader>
             <BottomHeader>
                 <div>
-                    {isAparece ?
-                        <img onClick={() => setAparece(false)} src={menu} alt="menu" />
-                    :<img onClick={() => setAparece(true)} src={menu} alt="menu" />}
+                    {isAparece1 ?
+                        <img onClick={() => setAparece1(false)} src={menu} alt="menu" />
+                        : <img onClick={() => [setAparece1(true), setAparece2(false)]} src={menu} alt="menu" />}
                 </div>
 
                 <Link to="/"><img className="logo" src={gifLogo} alt="logo" /></Link>
                 <RigthMenu>
-                    <img src={user} alt="user"></img>
-                    {getToken()?
+                    {isAparece2 ?
+                        <img onClick={() => setAparece2(false)} src={user} alt="user"></img>
+                        : <img onClick={() => [setAparece1(false), setAparece2(true)]} src={user} alt="user"></img>
+                    }
+
+                    {getToken() ?
                         <img src={quit} alt="shopping" onClick={() => deslogar()}></img>
-                    :<img src={enter} alt="shopping" onClick={() => goToLogin()}></img>}
+                        : <img src={enter} alt="shopping" onClick={() => goToLogin()}></img>}
                 </RigthMenu>
             </BottomHeader>
-            {isAparece ?
+            {isAparece1 ?
                 <HeaderMenu />
+                : null}
+            {isAparece2 ?
+                <HeaderMenuLogado />
                 : null}
         </Header>
 
