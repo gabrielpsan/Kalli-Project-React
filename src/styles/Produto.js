@@ -331,12 +331,13 @@ export const ContainerEntender = styled.div`
     width: 100%;
     background: #b24a87;
     margin-top: 50px;
+    padding: 0px 40px;
 `
 
 export const Topico = styled.div`
     display: flex;
     width: 100%;
-    align-items: center;
+    /* align-items: center; */
     flex-direction: column;
     margin-top: 100px;
 `
@@ -355,14 +356,14 @@ export const TtitleTopico = styled.div`
 export const RespostaTopico = styled.div`
     margin-top: 50px;
     width: 50%;
-    text-align: center;
+    /* text-align: center; */
     @media only screen and (max-width: 1100px) {
         width: 85%;
     }
     h3 {
         font-size: 28px;
         color: #FFFFFF;
-        opacity: 0.8;
+        opacity: 0.7;
         font-weight: 500;
         @media only screen and (max-width: 1100px) {
             font-size: 18px;

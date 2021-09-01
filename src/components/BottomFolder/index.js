@@ -10,7 +10,6 @@ import facebook from '../../utils/img/Face.png'
 import twitter from '../../utils/img/twitter.png'
 import Linkedin from '../../utils/img/linkedin.png'
 import send from '../../utils/img/send.png'
-import cadastur from '../../utils/img/cadastur.png'
 import imgfooter from '../../utils/img/img-footer.png'
 import gifLogo from '../../utils/img/gifLogo.gif'
 import { Link } from "react-router-dom";

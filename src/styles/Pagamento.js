@@ -54,7 +54,7 @@ export const RightPagamento = styled.div`
 export const RightConteudo = styled.div`
     position: absolute;
     width: 75%;
-    background: #FFFFFF;
+    background: #FFF6EE;
     height: 90%;
     border-radius: 20px;
     z-index: 999999;

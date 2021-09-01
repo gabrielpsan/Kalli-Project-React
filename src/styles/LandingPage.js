@@ -430,7 +430,7 @@ export const TitlePerguntas = styled.div`
     text-align: center;
     flex-direction: column;
     width: 100%;
-    margin-top: 100px;
+    margin-top: 220px;
 
     @media only screen and (max-width: 800px) {
         margin-top: 50px;

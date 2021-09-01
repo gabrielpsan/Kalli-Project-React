@@ -14,6 +14,9 @@ import { getToken } from '../../services/auth'
 import HeaderComponent from '../../components/Header';
 import { isEmpty } from 'lodash';
 import Swal from 'sweetalert2'
+import mercadopago from 'mercadopago'
+import { useMercadopago } from 'react-sdk-mercadopago';
+
 
 // class  extends Component {
 const Pagamento = (props) => {
@@ -204,112 +207,57 @@ const Pagamento = (props) => {
             setPagamento(true);
         }
     }
+ 
+    async function confirmPay() {
+        const token = getToken();
+        const header_config = { 'x-access-token': `${token}` };
+        let auxId = null
+        console.log(header_config);
 
-    // MercadoPago.setPublishableKey("TEST-94aee634-6e4e-4d21-83b1-cdd3202bc0ef");
+        await api.get(`/payment/confirm`, { headers: header_config }).then(res => {
+            console.log("Dado do pagamento: ", res.data)
 
-    function guessPaymentMethod() {
-        let cardnumber = document.getElementById("cardNumber").value;
-        if (cardnumber.length >= 6) {
-            let bin = cardnumber.substring(0, 6);
-            window.Mercadopago.getPaymentMethod(
-                {
-                    bin: bin,
+            auxId = res.data.response.id
+
+            const mercadopago = useMercadopago.v2('TEST-8450209088930876-080422-8501d6936a03bb783b52bf8408d96417-699453652', {
+                locale: 'en-US'
+            });
+    
+            if (mercadopago) {
+                mercadopago.checkout({
+                    preference: {
+                        id: auxId
+                    },
+                    render: {
+                        container: '.paymentModal',
+                        label: 'Pagar',
+                    }
+                })
+            }
+        });
+        // validadePay(auxId)
+    }
+
+    function validadePay(idPay){
+
+        const mercadopago = useMercadopago.v2('TEST-8450209088930876-080422-8501d6936a03bb783b52bf8408d96417-699453652', {
+            locale: 'en-US'
+        });
+
+        if (mercadopago) {
+            mercadopago.checkout({
+                preference: {
+                    id: idPay
                 },
-                this.setPaymentMethod
-            );
+                render: {
+                    container: '.paymentModal',
+                    label: 'Pagar',
+                }
+            })
         }
+    
     }
-
-    function setPaymentMethod(status, response) {
-        if (status == 200) {
-            let paymentMethod = response[0];
-            document.getElementById("paymentMethodId").value = paymentMethod.id;
-
-            this.getIssuers(paymentMethod.id);
-        } else {
-            alert(`payment method info error: ${response}`);
-        }
-    }
-
-    function getIssuers(paymentMethodId) {
-        window.Mercadopago.getIssuers(paymentMethodId, this.setIssuers);
-    }
-
-    function setIssuers(status, response) {
-        if (status == 200) {
-            let issuerSelect = document.getElementById("issuer");
-            response.forEach((issuer) => {
-                let opt = document.createElement("option");
-                opt.text = issuer.name;
-                opt.value = issuer.id;
-                issuerSelect.appendChild(opt);
-            });
-
-            this.getInstallments(
-                document.getElementById("paymentMethodId").value,
-                document.getElementById("transactionAmount").value,
-                issuerSelect.value
-            );
-        } else {
-            alert(`issuers method info error: ${response}`);
-        }
-    }
-
-    function getInstallments(paymentMethodId, transactionAmount, issuerId) {
-        window.Mercadopago.getInstallments(
-            {
-                payment_method_id: paymentMethodId,
-                amount: parseFloat(transactionAmount),
-                issuer_id: parseInt(issuerId),
-            },
-            this.setInstallments
-        );
-    }
-
-    function setInstallments(status, response) {
-        if (status == 200) {
-            document.getElementById("installments").options.length = 0;
-            response[0].payer_costs.forEach((payerCost) => {
-                let opt = document.createElement("option");
-                opt.text = payerCost.recommended_message;
-                opt.value = payerCost.installments;
-                document.getElementById("installments").appendChild(opt);
-            });
-        } else {
-            alert(`installments method info error: ${response}`);
-        }
-    }
-
-    function getCardToken(event) {
-        event.preventDefault();
-        if (!this.doSubmit) {
-            let $form = document.getElementById("paymentForm");
-            window.Mercadopago.createToken($form, this.setCardTokenAndPay);
-            return false;
-        }
-    }
-
-    function setCardTokenAndPay(status, response) {
-        if (status == 200 || status == 201) {
-            let form = document.getElementById("paymentForm");
-            let card = document.createElement("input");
-            card.setAttribute("name", "token");
-            card.setAttribute("type", "hidden");
-            card.setAttribute("value", response.id);
-            form.appendChild(card);
-            this.doSubmit = true;
-            form.submit();
-        } else {
-            alert("Verify filled data!\n" + JSON.stringify(response, null, 4));
-        }
-    }
-    // Mercadoago.getIdentificationTypes();
-
-    // useEffect(() => {
-
-    //     document.getElementById('cardNumber').addEventListener('change', this.guessPaymentMethod);
-    //     document.getElementById('paymentForm').addEventListener('submit', this.getCardToken);
-    // }, [])
+ 
 
     return (
         <Container>
@@ -437,145 +385,16 @@ const Pagamento = (props) => {
                                 <ButtonDiv>
                                     <button className="voltar" onClick={() => [setBox(false), setIdentificacao(true), setEntrega(false)]}>Voltar</button>
                                     {/* <button className="proximo" onClick={() => [setIdentificacao(false), setEntrega(false), setPagamento(true)]}>Próximo</button> */}
-                                    <button className="proximo" onClick={submitEntrega}>Próximo</button>
+                                    <button className="proximo" onClick={() => [submitEntrega, confirmPay()]}>Próximo</button>
                                 </ButtonDiv>
                             </EntregaDiv>
                             : null}
 
                         {isPagamento ?
-                            <PagamentoDiv>
-                                <div id="Home" className="divPrincipal">
-                                    <form
-                                        action="http://localhost:4000/process_payment"
-                                        method="post"
-                                        id="paymentForm"
-                                    >
-                                        <h3 class="textoComprador">Detalhe do comprador</h3>
-                                        <div className="divComprador">
-                                            <div className="divEmail">
-                                                <label for="email">E-mail</label>
-                                                <input id="email" name="email" type="text" />
-                                            </div>
-                                            <div className="divEmail">
-                                                <label for="docType">Tipo de documento</label>
-                                                <select
-                                                    id="docType"
-                                                    name="docType"
-                                                    data-checkout="docType"
-                                                    type="text"
-                                                ></select>
-                                            </div>
-                                            <div className="divEmail">
-                                                <label for="docNumber">Número do documento</label>
-                                                <input
-                                                    id="docNumber"
-                                                    name="docNumber"
-                                                    data-checkout="docNumber"
-                                                    type="text"
-                                                />
-                                            </div>
-                                        </div>
-                                        <h3 className="textoComprador">Detalhes do cartão</h3>
-                                        <div className="divComprador">
-                                            <div className="divEmail">
-                                                <label for="cardholderName">Titular do cartão</label>
-                                                <input
-                                                    id="cardholderName"
-                                                    data-checkout="cardholderName"
-                                                    type="text"
-                                                />
-                                            </div>
-                                            <div className="divEmail">
-                                                <label for="">Data de vencimento</label>
-                                                <div>
-                                                    <input
-                                                        type="text"
-                                                        placeholder="MM"
-                                                        id="cardExpirationMonth"
-                                                        data-checkout="cardExpirationMonth"
-                                                        onSelectstart="return false"
-                                                        onPaste="return false"
-                                                        onCopy="return false"
-                                                        onCut="return false"
-                                                        onDrag="return false"
-                                                        onDrop="return false"
-                                                        autoComplete="off"
-                                                    />
-                                                    <span class="date-separator">/</span>
-                                                    <input
-                                                        type="text"
-                                                        placeholder="YY"
-                                                        id="cardExpirationYear"
-                                                        data-checkout="cardExpirationYear"
-                                                        onSelectstart="return false"
-                                                        onPaste="return false"
-                                                        onCopy="return false"
-                                                        onCut="return false"
-                                                        onDrag="return false"
-                                                        onDrop="return false"
-                                                        autoComplete="off"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="divEmail">
-                                                <label for="cardNumber">Número do cartão</label>
-                                                <input
-                                                    type="text"
-                                                    id="cardNumber"
-                                                    data-checkout="cardNumber"
-                                                    onSelectstart="return false"
-                                                    onPaste="return false"
-                                                    onCopy="return false"
-                                                    onCut="return false"
-                                                    onDrag="return false"
-                                                    onDrop="return false"
-                                                    autoComplete="off"
-                                                />
-                                            </div>
-                                            <div className="divEmail">
-                                                <label for="securityCode">Código de segurança</label>
-                                                <input
-                                                    id="securityCode"
-                                                    data-checkout="securityCode"
-                                                    type="text"
-                                                    onSelectstart="return false"
-                                                    onPaste="return false"
-                                                    onCopy="return false"
-                                                    onCut="return false"
-                                                    onDrag="return false"
-                                                    onDrop="return false"
-                                                    auCocomplete="off"
-                                                />
-                                            </div>
-                                            <div id="issuerInput" className="divEmail">
-                                                <label for="issuer">Banco emissor</label>
-                                                <select id="issuer" name="issuer" data-checkout="issuer"></select>
-                                            </div>
-                                            <div className="divEmail">
-                                                <label for="installments">Parcelas</label>
-                                                <select type="text" id="installments" name="installments"></select>
-                                            </div>
-                                            <div className="send">
-                                                <input
-                                                    type="hidden"
-                                                    name="transactionAmount"
-                                                    id="transactionAmount"
-                                                    value="100"
-                                                />
-                                                <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
-                                                <input type="hidden" name="description" id="description" />
-                                                <br />
-                                                <button type="submit" className="proximo">Pagar</button>
-                                                <br />
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                {/* <ButtonDiv>
-                                    <button className="voltar" onClick={() => [setBox(false), setIdentificacao(false), setEntrega(true), setPagamento(false)]}>Voltar</button>
-                                    <button className="proximo" onClick={() => [setIdentificacao(false), setEntrega(false), setPagamento(true)]}>Próximo</button>
-                                </ButtonDiv> */}
+                            <PagamentoDiv className="paymentModal">
+                                
                             </PagamentoDiv>
+
                             : null}
                     </Dados>
                 </LeftPagamentoInputs>
